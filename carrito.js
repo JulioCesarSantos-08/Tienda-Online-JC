@@ -11,7 +11,7 @@ const contenedorProductos = document.getElementById("productos");
 const verCarrito = document.getElementById("verCarrito");
 const inputBuscar = document.getElementById("buscar");
 const btnBuscar = document.getElementById("btnBuscar");
-const btnVoz = document.getElementById("btnVoz"); // Botón de búsqueda por voz
+const btnVoz = document.getElementById("btnVoz");
 
 // Mostrar productos
 function cargarProductos(productosAMostrar = productos) {
@@ -48,7 +48,7 @@ function buscarProductos() {
 // Búsqueda por voz usando Web Speech API
 function buscarPorVoz() {
     const reconocimiento = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    reconocimiento.lang = "es-ES"; // Configurar idioma español
+    reconocimiento.lang = "es-ES"; 
 
     reconocimiento.onstart = function () {
         btnVoz.textContent = "Escuchando...";
@@ -58,7 +58,7 @@ function buscarPorVoz() {
     reconocimiento.onresult = function (event) {
         const texto = event.results[0][0].transcript;
         inputBuscar.value = texto;
-        buscarProductos(); // Realiza la búsqueda con el texto reconocido
+        buscarProductos(); 
     };
 
     reconocimiento.onerror = function () {
@@ -81,11 +81,12 @@ function comprarAhora(id) {
     window.open(url, "_blank");
 }
 
-// Agregar al carrito
+// Agregar al carrito evitando duplicados
 function agregarAlCarrito(id) {
-    const producto = productos.find(p => p.id === id);
-    carrito.push(producto);
-    actualizarCarrito();
+    if (!carrito.some(p => p.id === id)) {
+        carrito.push(productos.find(p => p.id === id));
+        actualizarCarrito();
+    }
 }
 
 // Actualizar icono del carrito
@@ -114,9 +115,7 @@ function mostrarCarrito() {
             </div>
         `).join('');
 
-        carritoHTML += `
-            <button class="btn-comprar-todos" onclick="comprarTodos()">Comprar Todos</button>
-        `;
+        carritoHTML += `<button class="btn-comprar-todos" onclick="comprarTodos()">Comprar Todos</button>`;
     }
     
     carritoHTML += `<button class="btn-cerrar" onclick="cerrarCarrito()">Cerrar</button>`;
@@ -156,5 +155,5 @@ function cerrarCarrito() {
 // Eventos
 verCarrito.addEventListener("click", mostrarCarrito);
 btnBuscar.addEventListener("click", buscarProductos);
-btnVoz.addEventListener("click", buscarPorVoz); // Evento para búsqueda por voz
+btnVoz.addEventListener("click", buscarPorVoz);
 cargarProductos();

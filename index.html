@@ -9,17 +9,20 @@
 <body>
     <header>
         <h1>Productos Disponibles</h1>
-        <div class="buscador">
-            <button id="btnVoz">🎤</button> <!-- Botón de búsqueda por voz -->
+        <img src="imagenes/logo.jpg" alt="Logo de la tienda" class="logo"> <!-- Logo en la esquina derecha -->
+        <div class="buscar-carrito">
+            <button id="btnVoz" aria-label="Búsqueda por voz">🎤</button> <!-- Botón de búsqueda por voz -->
             <input type="text" id="buscar" placeholder="Buscar productos...">
             <button id="btnBuscar">Buscar</button>
-            <button id="verCarrito">🛒 (0)</button>
+            <button id="verCarrito" aria-label="Ver carrito de compras">🛒 (0)</button>
         </div>
     </header>
     
-    <section id="productos">
-        <!-- Aquí se mostrarán los productos -->
-    </section>
+    <main>
+        <section id="productos">
+            <!-- Aquí se mostrarán los productos -->
+        </section>
+    </main>
 
     <div id="modalCarrito" class="modal">
         <!-- Contenido del carrito (agregado dinámicamente por JavaScript) -->

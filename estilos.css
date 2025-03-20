@@ -12,10 +12,21 @@ header {
     background: #333;
     color: white;
     padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén en columna */
+    align-items: center;
+    position: relative;
 }
 
-h1 {
-    margin: 0;
+/* Logo en la esquina derecha */
+.logo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: auto;
 }
 
 /* Contenedor de búsqueda y carrito */
@@ -25,6 +36,7 @@ h1 {
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    margin-top: 10px; /* Espacio entre el título y los elementos de búsqueda */
 }
 
 /* Botón de micrófono */
