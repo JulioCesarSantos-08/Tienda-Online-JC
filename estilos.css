@@ -27,6 +27,23 @@ h1 {
     flex-wrap: wrap;
 }
 
+/* Botón de micrófono */
+#btnVoz {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+#btnVoz:hover {
+    background: #e64a19;
+    transform: scale(1.1);
+}
+
 /* Barra de búsqueda */
 #buscar {
     padding: 8px;
@@ -86,6 +103,7 @@ h1 {
     border-radius: 5px;
 }
 
+/* Botón de comprar */
 .btn-comprar {
     background: green;
     color: white;

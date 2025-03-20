@@ -9,15 +9,22 @@
 <body>
     <header>
         <h1>Productos Disponibles</h1>
-        <input type="text" id="buscar" placeholder="Buscar productos...">
-        <button id="btnBuscar">Buscar</button>
-        <button id="verCarrito">🛒 (0)</button>
+        <div class="buscador">
+            <button id="btnVoz">🎤</button> <!-- Botón de búsqueda por voz -->
+            <input type="text" id="buscar" placeholder="Buscar productos...">
+            <button id="btnBuscar">Buscar</button>
+            <button id="verCarrito">🛒 (0)</button>
+        </div>
     </header>
     
     <section id="productos">
         <!-- Aquí se mostrarán los productos -->
     </section>
-    
+
+    <div id="modalCarrito" class="modal">
+        <!-- Contenido del carrito (agregado dinámicamente por JavaScript) -->
+    </div>
+
     <script src="carrito.js"></script>
 </body>
 </html>

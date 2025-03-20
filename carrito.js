@@ -11,6 +11,7 @@ const contenedorProductos = document.getElementById("productos");
 const verCarrito = document.getElementById("verCarrito");
 const inputBuscar = document.getElementById("buscar");
 const btnBuscar = document.getElementById("btnBuscar");
+const btnVoz = document.getElementById("btnVoz"); // Botón de búsqueda por voz
 
 // Mostrar productos
 function cargarProductos(productosAMostrar = productos) {
@@ -37,11 +38,39 @@ function cargarProductos(productosAMostrar = productos) {
     }
 }
 
-// Buscar productos
+// Buscar productos con teclado
 function buscarProductos() {
     const textoBusqueda = inputBuscar.value.toLowerCase();
     const productosFiltrados = productos.filter(producto => producto.nombre.toLowerCase().includes(textoBusqueda));
     cargarProductos(productosFiltrados);
+}
+
+// Búsqueda por voz usando Web Speech API
+function buscarPorVoz() {
+    const reconocimiento = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    reconocimiento.lang = "es-ES"; // Configurar idioma español
+
+    reconocimiento.onstart = function () {
+        btnVoz.textContent = "Escuchando...";
+        btnVoz.disabled = true;
+    };
+
+    reconocimiento.onresult = function (event) {
+        const texto = event.results[0][0].transcript;
+        inputBuscar.value = texto;
+        buscarProductos(); // Realiza la búsqueda con el texto reconocido
+    };
+
+    reconocimiento.onerror = function () {
+        alert("No se pudo reconocer la voz. Inténtalo de nuevo.");
+    };
+
+    reconocimiento.onend = function () {
+        btnVoz.textContent = "🎤";
+        btnVoz.disabled = false;
+    };
+
+    reconocimiento.start();
 }
 
 // Comprar Ahora (lleva a WhatsApp con solo 1 producto)
@@ -64,7 +93,7 @@ function actualizarCarrito() {
     verCarrito.innerText = `🛒 (${carrito.length})`;
 }
 
-// Mostrar carrito con diseño mejorado y botón "Comprar Todos"
+// Mostrar carrito con botón "Comprar Todos"
 function mostrarCarrito() {
     let modal = document.getElementById("modalCarrito");
     if (!modal) {
@@ -127,4 +156,5 @@ function cerrarCarrito() {
 // Eventos
 verCarrito.addEventListener("click", mostrarCarrito);
 btnBuscar.addEventListener("click", buscarProductos);
+btnVoz.addEventListener("click", buscarPorVoz); // Evento para búsqueda por voz
 cargarProductos();
