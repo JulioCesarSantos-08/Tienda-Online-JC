@@ -1,7 +1,9 @@
 const productos = [
     { id: 1, nombre: "Tenis", precio: 500, imagen: "imagenes/tenis.jpeg" },
-    { id: 2, nombre: "Lámpara LED", precio: 300, imagen: "imagenes/luces led.jpg" },
-    { id: 3, nombre: "Mochila", precio: 700, imagen: "imagenes/mochila.jpeg" }
+    { id: 2, nombre: "Lámpara LED", precio: 150, imagen: "imagenes/luces led.jpg" },
+    { id: 3, nombre: "Mochila", precio: 250, imagen: "imagenes/mochila.jpeg" },
+    { id: 4, nombre: "Casa para moto", precio: 400, imagen: "imagenes/Sombramoto.jpg" },
+    { id: 5, nombre: "Lámpara solar", precio: 200, imagen: "imagenes/laparasolar.jpeg" }
 ];
 
 let carrito = [];
@@ -42,10 +44,12 @@ function buscarProductos() {
     cargarProductos(productosFiltrados);
 }
 
-// Comprar Ahora
+// Comprar Ahora (lleva a WhatsApp con solo 1 producto)
 function comprarAhora(id) {
     const producto = productos.find(p => p.id === id);
-    alert(`Has comprado: ${producto.nombre} por $${producto.precio}`);
+    const mensaje = `Hola, quiero comprar el siguiente producto:\n- ${producto.nombre} por $${producto.precio}`;
+    const url = `https://wa.me/qr/VKL5FSPJN4QKP1?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
 }
 
 // Agregar al carrito
@@ -60,7 +64,7 @@ function actualizarCarrito() {
     verCarrito.innerText = `🛒 (${carrito.length})`;
 }
 
-// Mostrar carrito con diseño mejorado
+// Mostrar carrito con diseño mejorado y botón "Comprar Todos"
 function mostrarCarrito() {
     let modal = document.getElementById("modalCarrito");
     if (!modal) {
@@ -80,11 +84,29 @@ function mostrarCarrito() {
                 <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">❌</button>
             </div>
         `).join('');
+
+        carritoHTML += `
+            <button class="btn-comprar-todos" onclick="comprarTodos()">Comprar Todos</button>
+        `;
     }
+    
     carritoHTML += `<button class="btn-cerrar" onclick="cerrarCarrito()">Cerrar</button>`;
 
     modal.innerHTML = carritoHTML;
     modal.style.display = "block";
+}
+
+// Comprar todos los productos del carrito en WhatsApp
+function comprarTodos() {
+    if (carrito.length === 0) return;
+
+    let mensaje = "Hola, quiero comprar los siguientes productos:\n";
+    carrito.forEach(producto => {
+        mensaje += `- ${producto.nombre} por $${producto.precio}\n`;
+    });
+
+    const url = `https://wa.me/qr/VKL5FSPJN4QKP1?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
 }
 
 // Eliminar producto del carrito

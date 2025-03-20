@@ -18,6 +18,15 @@ h1 {
     margin: 0;
 }
 
+/* Contenedor de búsqueda y carrito */
+.buscar-carrito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 /* Barra de búsqueda */
 #buscar {
     padding: 8px;
@@ -31,8 +40,8 @@ h1 {
     padding: 8px 15px;
     border: none;
     cursor: pointer;
-    margin-left: 10px;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 #btnBuscar {
