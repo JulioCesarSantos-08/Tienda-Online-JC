@@ -48,7 +48,7 @@ function buscarProductos() {
 function comprarAhora(id) {
     const producto = productos.find(p => p.id === id);
     const mensaje = `Hola, quiero comprar el siguiente producto:\n- ${producto.nombre} por $${producto.precio}`;
-    const url = `https://wa.me/qr/VKL5FSPJN4QKP1?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/message/ZQROKPMTPKWJB1?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
 }
 
@@ -105,7 +105,7 @@ function comprarTodos() {
         mensaje += `- ${producto.nombre} por $${producto.precio}\n`;
     });
 
-    const url = `https://wa.me/qr/VKL5FSPJN4QKP1?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/message/ZQROKPMTPKWJB1?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
 }
 
