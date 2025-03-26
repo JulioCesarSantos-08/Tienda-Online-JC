@@ -1,9 +1,9 @@
 const productos = [
-    { id: 1, nombre: "Tenis", precio: 500, imagen: "imagenes/tenis.jpeg" },
-    { id: 2, nombre: "Lámpara LED", precio: 150, imagen: "imagenes/luces led.jpg" },
-    { id: 3, nombre: "Mochila", precio: 250, imagen: "imagenes/mochila.jpeg" },
-    { id: 4, nombre: "Casa para moto", precio: 400, imagen: "imagenes/Sombramoto.jpg" },
-    { id: 5, nombre: "Lámpara solar", precio: 200, imagen: "imagenes/laparasolar.jpeg" }
+    { id: 1, nombre: "audifonos", precio: 200, imagen: "imagenes/audifonos.png" },
+    { id: 2, nombre: "cargador para coche 12V", precio: 500, imagen: "imagenes/cargad-coche.png" },
+    { id: 3, nombre: "lampara", precio: 250, imagen: "imagenes/lampara.png" },
+    { id: 4, nombre: "Lampara mata mosquitos", precio: 250, imagen: "imagenes/lamparaM.png" },
+    { id: 5, nombre: "Sandalias talla: 25-26 MX", precio: 280, imagen: "imagenes/sandalias.png" }
 ];
 
 let carrito = [];
